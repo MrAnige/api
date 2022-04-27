@@ -1,0 +1,10 @@
+{
+    "name": "esn81/tuto-api",
+    "autoload": {
+        "psr-4": {"tutoAPI\\": "src/"}
+    },
+    "description": "API pour des tutos",
+    "require": {
+        "guzzlehttp/guzzle": "^7.4"
+    }
+}
