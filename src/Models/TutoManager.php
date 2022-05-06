@@ -37,7 +37,7 @@ class TutoManager extends Manager
         $dbh = static::connectDb();
 
         // Requête
-        $sth = $dbh->prepare('SELECT * FROM tutos');
+        $sth = $dbh->prepare('SELECT * FROM tutos LIMIT $uri');
         $sth->execute();
 
         $tutos = [];
@@ -64,9 +64,6 @@ class TutoManager extends Manager
 
         // Requête
         $sth = $dbh->prepare('INSERT INTO tutos (title, description, createdAt) VALUES (:title, :description, :createdAt)');
-        //$sth->bindParam(':id', $id, \PDO::PARAM_INT);
-       // $sth->execute();
-        //$result = $sth->fetch(\PDO::FETCH_ASSOC);
         $title = $tuto->getTitle();
         $sth->bindParam(':title', $title);
         $description = $tuto->getDescription();
@@ -102,12 +99,7 @@ class TutoManager extends Manager
         $dbh = static::connectDb();
         $sth = $dbh->prepare('DELETE FROM tutos  WHERE ID=:id');
          $sth->bindParam(':id', $tuto->id, \PDO::PARAM_INT);
-        //  $title = $tuto->getTitle();
-        //  $sth->bindParam(':title', $title);
-        //  $description = $tuto->getDescription();
-        //  $sth->bindParam(':description', $description);
-        //  $createdAt = $tuto->getDescription();
-        //  $sth->bindParam(':createdAt', $createdAt);
+
          $sth->execute();
  
          return $tuto;
